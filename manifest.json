@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+
+  "name": "duozhuaqian",
+  "description": "帮你监控你想要买卖的书籍是否有涨价或者降价.",
+  "version": "1.0",
+
+  "permissions": [
+    "https://www.duozhuayu.com/",
+    "alarms",
+    "notifications",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "browser_action": {
+    "default_icon": "static/image/panda.png",
+    "default_popup": "static/html/popup.html"
+  },
+  "background": {
+    "scripts": ["static/jquery.min.js", "static/background.js"],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.duozhuayu.com/*"],
+      "js": [
+        "static/jquery.min.js",
+        "static/content_script.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ]
+}
